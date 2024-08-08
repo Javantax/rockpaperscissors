@@ -23,8 +23,8 @@ function getUserChoice() {
     return move.toLowerCase();
 }
 
-const userSelection = getUserChoice();
-const computerSelection = getComputerChoice();
+const userSelection = "";
+const computerSelection = "";
 
 function playRound(userSelection, computerSelection) {
     userSelection = getUserChoice();
@@ -38,13 +38,13 @@ function playRound(userSelection, computerSelection) {
         output = `You win! ${userSelection} beats ${computerSelection}`;
         userScore++;
     } else {
-        output = `You lose! ${computerSelection} beats ${userSelection}`
+        output = `You lose! ${computerSelection} beats ${userSelection}`;
         computerScore++;
     }
     return output;
 }
 
-function playGame() {
+/*function playGame() {
     let output;
     for (let i = 0 ; i < 5; i++) {
         console.log(playRound(userSelection, computerSelection));
@@ -58,6 +58,6 @@ function playGame() {
     }
 
     return output;
-}
+}*/
 
-console.log(playGame());
+console.log(playRound());
