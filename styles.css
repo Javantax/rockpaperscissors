@@ -1,0 +1,14 @@
+.main-heading {
+    display: flex;
+    justify-content: center;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.button {
+    padding: 50px;
+}

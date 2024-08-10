@@ -1,34 +1,23 @@
 let userScore = 0;
 let computerScore = 0;
 
+const rock = document.querySelector(".rock");
+rock.addEventListener("click", () => playRound("rock", getComputerChoice()));
+
+const paper = document.querySelector(".paper");
+paper.addEventListener("click", () => playRound("paper", getComputerChoice()));
+
+const scissors = document.querySelector(".scissors");
+scissors.addEventListener("click", () => playRound("scissors", getComputerChoice()));
+
 function getComputerChoice() {
-    let move;
-    let random = Math.floor(Math.random() * 3);
-    switch (random) {
-        case 0:
-            move = "rock";
-            break;
-        case 1:
-            move = "paper";
-            break;
-        case 2:
-            move = "scissors";
-            break;
-    }
-    return move;
+    let options = ["rock", "paper", "scissors"];
+    return options[Math.floor(Math.random() * options.length)];
 }
-
-function getUserChoice() {
-    let move = prompt("Enter your move?", "");
-    return move.toLowerCase();
-}
-
-const userSelection = "";
-const computerSelection = "";
 
 function playRound(userSelection, computerSelection) {
-    userSelection = getUserChoice();
-    computerSelection = getComputerChoice();
+    console.log(userSelection);
+    console.log(computerSelection);
     let output;
     if (userSelection === computerSelection) {
         output = `Its a tie! Both chose ${userSelection}`;
@@ -41,6 +30,7 @@ function playRound(userSelection, computerSelection) {
         output = `You lose! ${computerSelection} beats ${userSelection}`;
         computerScore++;
     }
+    console.log(output);
     return output;
 }
 
@@ -60,4 +50,4 @@ function playRound(userSelection, computerSelection) {
     return output;
 }*/
 
-console.log(playRound());
+//console.log(playRound());
