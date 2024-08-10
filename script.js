@@ -2,13 +2,17 @@ let userScore = 0;
 let computerScore = 0;
 
 const rock = document.querySelector(".rock");
-rock.addEventListener("click", () => playRound("rock", getComputerChoice()));
+rock.addEventListener("click", () => playGame("rock", getComputerChoice()));
 
 const paper = document.querySelector(".paper");
-paper.addEventListener("click", () => playRound("paper", getComputerChoice()));
+paper.addEventListener("click", () => playGame("paper", getComputerChoice()));
 
 const scissors = document.querySelector(".scissors");
-scissors.addEventListener("click", () => playRound("scissors", getComputerChoice()));
+scissors.addEventListener("click", () => playGame("scissors", getComputerChoice()));
+
+const outputDisplay = document.querySelector(".output");
+const userScoreDisplay = document.createElement("p");
+const computerScoreDisplay = document.createElement("p");
 
 function getComputerChoice() {
     let options = ["rock", "paper", "scissors"];
@@ -16,8 +20,6 @@ function getComputerChoice() {
 }
 
 function playRound(userSelection, computerSelection) {
-    console.log(userSelection);
-    console.log(computerSelection);
     let output;
     if (userSelection === computerSelection) {
         output = `Its a tie! Both chose ${userSelection}`;
@@ -30,24 +32,36 @@ function playRound(userSelection, computerSelection) {
         output = `You lose! ${computerSelection} beats ${userSelection}`;
         computerScore++;
     }
-    console.log(output);
+    const scores = document.querySelector(".scores");
+
+    userScoreDisplay.textContent = "Your Score: " + userScore;
+    computerScoreDisplay.textContent = "Computer Score: " + computerScore;
+
+    scores.appendChild(userScoreDisplay);
+    scores.appendChild(computerScoreDisplay);
+
+    outputDisplay.textContent = output;
+}
+
+function playGame(userSelection, computerSelection) {
+    playRound(userSelection, computerSelection);
+    let output;
+    if (userScore === 5 || computerScore === 5) {
+        if (userScore === computerScore) {
+            output = `You both tie with a score of ${userScore} - ${computerScore}`;
+        } else if (userScore > computerScore) {
+            output = `You won with a score of ${userScore} - ${computerScore}`;
+        } else {
+            output = `You lose with a score of ${userScore} - ${computerScore}`;
+        }
+        userScoreDisplay.remove();
+        computerScoreDisplay.remove();
+
+        outputDisplay.textContent = output;
+        userScore = 0;
+        computerScore = 0;
+    }
     return output;
 }
 
-/*function playGame() {
-    let output;
-    for (let i = 0 ; i < 5; i++) {
-        console.log(playRound(userSelection, computerSelection));
-    }
-    if (userScore === computerScore) {
-        output = `You both tie with a score of ${userScore} - ${computerScore}`;
-    } else if (userScore > computerScore) {
-        output = `You won with a score of ${userScore} - ${computerScore}`;
-    } else {
-        output = `You lose with a score of ${userScore} - ${computerScore}`;
-    }
 
-    return output;
-}*/
-
-//console.log(playRound());
